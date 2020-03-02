@@ -1,4 +1,4 @@
-﻿//https://www.hackerearth.com/practice/basic-programming/input-output/basics-of-input-//output/practice-problems/algorithm/play-with-numbers-2/
+﻿https://www.hackerearth.com/practice/basic-programming/input-output/basics-of-input-output/practice-problems/algorithm/play-with-numbers-2/
 
 
 using System;

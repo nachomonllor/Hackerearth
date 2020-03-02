@@ -1,0 +1,57 @@
+﻿//https://www.hackerearth.com/practice/algorithms/searching/binary-search/practice-problems/algorithm/sherlock-and-numbers/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int t = int.Parse(Console.ReadLine());
+
+            while (t-- > 0)
+            {
+                string[] input = Console.ReadLine().Split(' ');
+                long n = long.Parse(input[0]);
+                long k = long.Parse(input[1]);
+                int p = int.Parse(input[2]);
+
+                int[] a = Array.ConvertAll(Console.ReadLine().Split(' '), e => int.Parse(e));
+
+                long[] marcados = new long[n + 1];
+
+                foreach (int elem in a)
+                {
+                    marcados[elem]++;
+                }
+
+                long cont = 0;
+
+                long ans = -1;
+                for (int i = 1; i < marcados.Length; i++)
+                {
+                    if (marcados[i]==0)
+                    {
+                        cont++;
+                        if (cont == p)
+                        {
+                            ans =i;
+                            break;
+                        }
+                    }
+                }
+
+                Console.WriteLine(ans);
+
+
+            }
+
+            Console.ReadLine();
+        }
+    }
+}

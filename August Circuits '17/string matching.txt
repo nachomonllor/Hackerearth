@@ -1,0 +1,85 @@
+﻿https://www.hackerearth.com/challenge/competitive/august-circuits-17/algorithm/string-matching-google-3dc355a5/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //string x = "333";
+            //int n = 1;
+            //int[] set = Array.ConvertAll("3".Trim().Split(' '), e => int.Parse(e));
+
+            string x = Console.ReadLine();
+            int n = int.Parse(Console.ReadLine());
+            int[] set = Array.ConvertAll(Console.ReadLine() .Trim().Split(' '), e => int.Parse(e)).Distinct().ToArray();
+
+
+            //HashSet<int> hs = new HashSet<int>();
+            //for (int i = 0; i < set.Length; i++)
+            //{
+            //    hs.Add(set[i]);
+            //}
+            int[] buscar1 = set.ToArray();
+
+            char[] buscar = new char[buscar1.Length];
+            for (int i = 0; i < buscar1.Length; i++)
+            {
+                buscar[i] = char.Parse(buscar1[i].ToString());
+            }
+
+
+            List<char[]> lista = new List<char[]>();
+            for (int i = 0; i < x.Length; i++)
+            {
+                //HashSet<int> subs = new HashSet<int>();
+                List<char> subs = new List<char>();
+                for (int j = i; j < x.Length; j++)
+                {
+                    //Console.WriteLine(s.Substring(i, j - i + 1));
+                    // Console.WriteLine( x.Substring(i, j - i + 1));
+                    //subs.Add(int.Parse(x[j].ToString()));
+                    char[] char_arr = x.Substring(i, j - i + 1).ToCharArray().Distinct().ToArray();
+                    lista.Add(char_arr);
+
+                }
+
+
+
+                //Console.WriteLine();
+
+                //lista.Add(arr);
+            }
+
+           
+
+            int ans = 0;
+            foreach (char[] elem in lista)
+            {
+                int i = 0;
+                for ( i = 0; i < elem.Length; i++)
+                {
+                    if (!buscar.Contains(elem[i]))
+                    {
+                        break;
+                    }
+                }
+                if (i >= elem.Length)
+                {
+                    ans++;
+                }
+            }
+
+            Console.WriteLine(ans);
+
+            Console.ReadLine();
+
+        }
+    }
+}

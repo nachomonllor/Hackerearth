@@ -1,0 +1,156 @@
+﻿#include <iostream>
+#include <stdio.h>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int mostrar(int arr[], int N) {
+	for(int i = 0; i < N; i++) {
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+}
+
+int Particion(int vector[], int lim_izq, int lim_der)
+{
+	int izq=lim_izq, der=lim_der, elemPivote=vector[lim_izq];
+
+	while(izq < der)
+	{
+        while(vector[izq] >= elemPivote && izq < der) izq++;
+	    while(vector[der] < elemPivote) der--;
+
+	    if(izq < der)
+        {
+	        int temp = vector[izq];
+        	vector[izq] = vector[der];
+	        vector[der] = temp;
+        }
+	}
+	
+	vector[lim_izq] = vector[der];
+	vector[der] = elemPivote;
+	return der;
+}
+	
+	
+void quick(int a[], int left, int right)
+{
+         
+    if (left < right)
+    {
+        int i = Particion(a, left, right);
+        quick(a, left, i - 1);
+        quick(a, i + 1, right);
+    }
+}
+
+bool promNight(int boys[], int M , int  girls[], int N)
+{
+            quick(boys, 0, M - 1);
+            quick(girls, 0, N - 1);
+
+			
+			//mostrar(boys, M);
+			//mostrar(girls, N);
+
+            if ( N < M){   //girls.size() < boys.size())  {
+               return false;
+           	}
+
+            if (M == N)
+            {
+                for (int k = 0; k < M; k++)
+                {
+                    if (boys[k] < girls[k])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            int i = 0, iGirls = 0;
+            while (i < M)
+            {
+                while (iGirls < N && boys[i] <= girls[iGirls])
+                {
+                    iGirls++;
+                }
+                
+                if (i < M && iGirls > N)
+                {
+                    return false;
+                }
+				i++;
+            }
+            return true;
+}
+
+
+
+int main() {
+	
+	int T;
+	printf("Ingrese T (numero de casos)");
+	scanf("%d", &T);  
+
+	
+	for(int i = 0; i < T; i++) {
+		
+		int M, N;
+
+		printf("\nCant chicos: ");
+		scanf("%d", &M);
+	
+		printf("\ncant chicas: ");
+		scanf("%d", &N);
+		
+		//int* boys = new int[M];
+		//int* girls = new int[N];
+		int boys[M];
+		int girls[N];
+		
+		printf("\nIngrese alturas de cada uno de los %d chicos: ", M);
+		for(int j = 0; j < M; j++){
+			int alt_boy;
+			scanf("%d", &alt_boy);
+			boys[j] = alt_boy;
+		}
+		
+		printf("\nIngrese alturas de cada una de las %d chicas: ", N);
+		for(int j =0; j < N; j++) {
+			int alt_girl;
+			scanf("%d", &alt_girl);
+			girls[j] = alt_girl;
+		}
+		
+	     if	(promNight(boys, M, girls, N)) {
+	     	printf("YES\n");
+	     } else {
+	     	printf("NO\n");
+	     }
+		
+	}
+	
+	return 0;
+}
+
+
+
+/*
+int main() {
+	
+	int arr[] = {4,9,1,50,64,434,4,4345,278,885,53};
+	int n = sizeof(arr)/sizeof(int);
+	
+	quick(arr, 0, n - 1);
+	
+	for(int i = 0; i < n; i++){
+		printf("%d ", arr[i]);
+	}
+	
+	
+	return 0;
+}*/
+	

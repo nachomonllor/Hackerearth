@@ -1,4 +1,5 @@
-﻿using System;
+﻿https://www.hackerearth.com/practice/algorithms/string-algorithm/basics-of-string-manipulation/practice-problems/algorithm/sumits-string/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

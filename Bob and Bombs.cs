@@ -1,4 +1,5 @@
-﻿using System;
+﻿https://www.hackerearth.com/practice/basic-programming/implementation/basics-of-implementation/practice-problems/algorithm/bob-and-bombs-cake-walk/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,5 +50,3 @@ namespace ConsoleApplication2
         }
     }
 }
-
-

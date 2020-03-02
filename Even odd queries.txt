@@ -1,0 +1,92 @@
+https://www.hackerearth.com/practice/basic-programming/implementation/basics-of-implementation/practice-problems/algorithm/even-odd-queries-f52d76e2/description/
+
+#include <iostream>
+#include <stdio.h>
+#include <map>
+ 
+using namespace std;
+
+int gcd(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+}
+
+
+int main()
+{
+
+	ios_base::sync_with_stdio(false); 
+    cin.tie(NULL);  
+	
+	
+    int t;
+    scanf("%d", &t);
+
+
+    while (t--)
+    {
+
+        int n, q;
+        scanf("%d %d", &n, &q);
+
+        int arr[n]; 
+        int dic[n + 1] = {0};
+    	
+		//for(int i =0; i<n+1; i++) {
+		//	dic[i] = 0;
+		//}
+		
+
+        int pares = 0;
+        
+        for (int i = 0; i < n; i++)
+        {
+        	int elem;
+        	scanf("%d", &elem);
+            if (elem % 2 == 0) pares++;
+            dic[i] = pares;
+        }
+
+        for (int i = 0; i < q; i++)
+        {
+            int k, l, r;
+            scanf("%d %d %d", &k, &l, &r);
+            l--;
+            r--;
+
+            int gc = 0, num = 0, den = 0, even = 0;
+            int izq = 0;
+            if (l > 0) izq = dic[l - 1];
+            
+            if (k == 0)
+            {
+                even = dic[r] - izq;
+                num = even;
+            }
+            else if (k == 1)
+            {
+                even = dic[r] - izq;
+                num = r - l + 1 - even;
+            }
+
+            den = r - l + 1;
+            gc = gcd(num, den);
+            num /= gc;
+            den /= gc;
+			
+			/*
+            if (num == 0) cout << ("0") << endl;
+            else if (num == den) cout << ("1") << endl;
+            else cout << num << " " << den << endl;
+            */
+            if (num == 0) printf("0\n");
+            else if (num == den) printf("1\n");
+            else //cout << num << " " << den << endl;
+            	printf("%d %d\n", num, den);
+        }
+    }
+
+	return 0;
+}

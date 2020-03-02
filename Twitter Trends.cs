@@ -1,4 +1,6 @@
-﻿using System;
+﻿https://www.hackerearth.com/practice/algorithms/string-algorithm/string-searching/practice-problems/algorithm/twitter-trends/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

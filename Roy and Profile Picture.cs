@@ -1,4 +1,5 @@
-﻿static void Main(string[] args)
+﻿https://www.hackerearth.com/problem/algorithm/roy-and-profile-picture/
+static void Main(string[] args)
         {
 
             int l = int.Parse(Console.ReadLine());
@@ -26,4 +27,3 @@
 
             Console.ReadLine();
         }
-

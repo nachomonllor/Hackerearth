@@ -1,4 +1,6 @@
-﻿#include <iostream>
+﻿https://www.hackerearth.com/problem/algorithm/palindromic-numbers-7/
+
+#include <iostream>
 #include <vector>
 #include <stdio.h>
 

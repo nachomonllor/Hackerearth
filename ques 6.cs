@@ -1,4 +1,6 @@
-﻿using System;
+﻿https://www.hackerearth.com/practice/basic-programming/implementation/basics-of-implementation/practice-problems/algorithm/ques-6/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,4 +46,3 @@ namespace ConsoleApp1
         }
     }
 }
-

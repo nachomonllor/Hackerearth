@@ -1,0 +1,100 @@
+﻿https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/prom-night/description/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication70
+{
+    class Program
+    {
+
+
+
+        static string PromNigth(int[] boys, int[] girls)
+        {
+
+            if (boys.Length > girls.Length)
+            {
+                return "NO";
+            }
+
+            Array.Sort(boys);
+            Array.Sort(girls);
+
+            int i = boys.Length-1;
+            int j = i;
+            while (i >= 0 && j >=0 && boys[i] <= girls[j])
+            {
+                j--;
+            }
+            if (j < 0)
+            {
+                return "NO";
+            }
+            for (; i >= 0 && j >=0 ; i--)
+            {
+                if (girls[j] >= boys[i])
+                {
+                    return "NO";
+                }
+                j--;
+            }
+            if (j < i)
+            {
+                return "NO";
+            }
+
+            return "YES";
+        }
+
+       
+
+        static void Main(string[] args)
+        {
+
+
+            //int[] boys = { 2, 5, 6, 8 };
+            //int[] girls = { 3, 8, 5, 1, 7 };
+
+            //Console.WriteLine(PromNigth(boys, girls));
+
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            while (t-- > 0)
+            {
+                string[] mn = Console.ReadLine().Trim().Split(' ');
+                int m = int.Parse(mn[0]);
+                int n = int.Parse(mn[1]);
+
+                int[] boys = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => int.Parse(e));
+                int[] girls = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => int.Parse(e));
+
+                Console.WriteLine(PromNigth(boys, girls));
+
+            }
+
+
+            //int[] boys = { 7, 167, 96, 171, 25, 14, 156, 6 };
+            //int[] girls = { 138, 33, 189, 56, 161, 178, 94, 72, 143, 2 };
+
+
+           //int[] boys = {  66 };
+           //int[] girls = { 140, 103, 141, 63, 11, 73, 84, 59, 53 };
+
+
+
+           //int[] boys = { 127, 80, 89 };
+           //int[] girls = { 110, 194, 155, 159, 174, 9 };
+
+
+          //  Console.WriteLine(PromNigth(boys, girls));
+
+            Console.ReadLine();
+        }
+
+
+    }
+}

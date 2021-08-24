@@ -1,0 +1,108 @@
+https://www.hackerearth.com/practice/algorithms/string-algorithm/basics-of-string-manipulation/practice-problems/algorithm/special-substrings-9fb5dbe8/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp110
+{
+    class Program
+    {
+
+
+        static long Gauss(long n)
+        {
+            return (n * (n + 1)) / 2;
+        }
+
+        public static long Substrings(string s)
+        {
+            char actual = s[0];
+            List<string> gruposDeIgualCaracter = new List<string>();
+
+            int i = 0;
+            //string concat = "";
+            StringBuilder concat = new StringBuilder();
+            for (i = 0; i < s.Length; i++)
+            {
+                if (actual == s[i])
+                {
+                    // concat += s[i];
+                    concat.Append(s[i]);
+                }
+                else
+                {
+                    gruposDeIgualCaracter.Add(concat.ToString());
+                    actual = s[i];
+                    concat = new StringBuilder ();
+                    concat .Append( s[i]);
+                }
+
+            }
+            if (concat.Length > 0)
+            {
+                gruposDeIgualCaracter.Add(concat.ToString());
+            }
+
+            //return gruposDeIgualCaracter;
+            long total = 0;
+
+
+
+            for (i = 0; i  < gruposDeIgualCaracter.Count; i++)
+            {
+                total += Gauss(gruposDeIgualCaracter[i].Length);
+
+                if (i + 2 < gruposDeIgualCaracter.Count)
+                {
+
+                    if (gruposDeIgualCaracter[i].EndsWith(gruposDeIgualCaracter[i + 2]) ||
+                        gruposDeIgualCaracter[i + 2].StartsWith(gruposDeIgualCaracter[i]))
+                    {
+                        if (gruposDeIgualCaracter[i + 1].Length == 1)
+                        {
+                            long min = Math.Min(gruposDeIgualCaracter[i].Length, gruposDeIgualCaracter[i + 2].Length);
+
+                            total += min;
+                        }
+
+                    }
+                }
+            }
+
+
+
+
+            return total;
+
+        }
+
+
+
+
+
+
+
+        static void Main(string[] args)
+        {
+
+
+            // string s = "aba";//4
+            //string s = "aaaaaaaaaa";//55
+            //string s = "aabbbababa"; //18
+            //2262
+            //string s = "abbbbabbaaabbaaababbaababaaaaaaaabababaabbbabbbaaaaaababaababbbbbbabaababaaaabbabbabaaaaaabbbaaababbbabababbbabbbbabbbabbbbabbbaaabbbbbababaaabbbababbbaaaababbaaabbbabababbaabbaabbbabbbaabbbbbbaababbbbabbbaababbbaaabaaaabbbababbbbbbbaaaabaaabbabbbabbaaababbabbbaaaaababbaaababaabbbbbabbbababaabbaaaabbabbbaabaaabbbbabbbababaaaaaabbbbbabbaababaaaaabbbaaabaabbabababaaababababbabbaabaabbbbaabbaabbbbaabbbababbbbbbabbbaaaaabbabaaababbbabaabbbabaaabbbabbaabbbbbabbbaabbababaaaaabbbababaaabaaaabbbbbaabbbabbbbaaabaaabaaabaababababbaaababbbabbbabbabbbbabbbaabbaabaabaabbababaabbbaaabababbaabaaaaabababbabaaababbababaaaaabbabbbaabbbbabaabaabbbaaabbabbbaababaabababbbbbbababbaabbbbbaabaabbabaaabbbabbbbaaabaaaababbaabaaabbbbaabbaaaabbabaaababbbbbaaaabbbaababbabbaaaaabbaabbbbaabbababaaaaabbababbbbbaabaabbbbbaaababbabbabababababbaaaaabbbbabbaaaababbbabaaaaaabbabbabbbaaabbabbabaaababbbabbaaababbbabaabbabbbaabaaaabbbbaaababbaaaababaababaabaabaaaaaaaaabbbabbbbbbabbbbaabbabaaabaabbababababaaabaababbabbaabaaab";
+
+            
+
+            string s = Console.ReadLine().Trim();
+
+            Console.WriteLine(Substrings(s));
+
+            Console.ReadLine();
+
+        }
+    }
+}

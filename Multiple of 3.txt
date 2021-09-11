@@ -1,0 +1,64 @@
+
+https://www.hackerearth.com/practice/algorithms/greedy/basics-of-greedy-algorithms/practice-problems/algorithm/multiple-85dda659/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp164
+{
+    class Program
+    {
+
+
+        static int SumDigits(string n)
+        {
+            int sumaDigits = 0;
+            for (int i = 0; i < n.Length; i++)
+            {
+                sumaDigits += int.Parse(n[i] + "");
+            }
+            return sumaDigits;
+        }
+
+        static void Main(string[] args)
+        {
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            while (t-- > 0)
+            {
+
+                string n = Console.ReadLine().Trim();
+
+                if (SumDigits(n) % 3 == 0)
+                {
+                    Console.WriteLine(n);
+                    continue;
+                }
+
+                long min = long.MaxValue;
+                for (char inserto = '1'; inserto <= '9'; inserto++)
+                {
+                    string num = n;
+
+                    if (SumDigits(inserto + "" + n) % 3 == 0)
+                    {
+                        for (int i = 0; i < num.Length+1; i++)
+                        {
+                            min = Math.Min(min, long.Parse(num.Insert(i, inserto + "")));
+                        }
+                    }
+
+                }
+
+                Console.WriteLine(min);
+
+            }
+
+            Console.ReadLine();
+
+        }
+    }
+}

@@ -1,0 +1,48 @@
+https://www.hackerearth.com/practice/algorithms/greedy/basics-of-greedy-algorithms/practice-problems/algorithm/digits-divide-6f200dd9/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp163
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int t = int.Parse(Console.ReadLine());
+
+            while(t-- > 0)
+            {
+
+                char[] ch = Console.ReadLine().Trim().ToCharArray();
+                Array.Sort(ch);
+
+                string a = "", b = "";
+
+                for(int i =0; i< ch.Length; i++)
+                {
+                    if(i % 2 == 0)
+                    {
+                        a += ch[i];
+                    }
+                    else
+                    {
+                        b += ch[i];
+                    }
+                }
+
+                Console.WriteLine(long.Parse(a) + long.Parse(b));
+
+
+            }
+
+
+
+
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,43 @@
+https://www.hackerearth.com/practice/basic-programming/input-output/basics-of-input-output/practice-problems/algorithm/is-zoo-f6f309e7/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp164
+{
+    class Program
+    {
+
+       
+
+        static void Main(string[] args)
+        {
+
+
+            string zoo = Console.ReadLine().Trim();
+
+            int z = 0, o = 0;
+
+            for(int i =0; i<zoo.Length; i++)
+            {
+                if(zoo[i] == 'z')
+                {
+                    z++;
+                }
+                else
+                {
+                    o++;
+                }
+            }
+
+            //Console.WriteLine( Math.Ceiling((double)(o / z)) == 2 ? "Yes" : "No");
+            Console.WriteLine(o % z == 0 && o > z ? "Yes" : "No");
+
+            Console.ReadLine();
+
+        }
+    }
+}

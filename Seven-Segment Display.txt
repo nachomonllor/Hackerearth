@@ -1,0 +1,69 @@
+
+https://www.hackerearth.com/practice/basic-programming/input-output/basics-of-input-output/practice-problems/algorithm/seven-segment-display-nov-easy-e7f87ce0/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp164
+{
+    class Program
+    {
+
+        static string  SevenSegmentDisplay(string number)
+        {
+            //0  1  2  3  4  5  6  7  8  9
+            int[] cantidades = { 6, 2, 5, 5, 4, 5, 6, 3, 7, 6 };
+
+            int cont = 0;
+            for (int i = 0; i < number.Length; i++)
+            {
+                cont += cantidades[number[i] - '0'];
+            }
+
+            string ans = "";
+
+            while (cont > 0)
+            {
+
+                while (cont % 2 == 0 && cont > 0)
+                {
+                    ans += "1";
+                    cont -= 2;
+                }
+                while(cont % 2 != 0 && cont > 0)
+                {
+                    ans += "7";
+                    cont -= 3;
+                }
+            }
+            char[] bigger = ans.ToCharArray();
+            Array.Sort(bigger);
+            Array.Reverse(bigger);
+
+            return new string(bigger);
+
+        }
+
+        static void Main(string[] args)
+        {
+
+
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            while (t-- > 0)
+            {
+
+                string N = Console.ReadLine().Trim();
+
+                Console.WriteLine(SevenSegmentDisplay(N));
+
+            }
+
+            Console.ReadLine();
+
+        }
+    }
+}

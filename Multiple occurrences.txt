@@ -1,0 +1,93 @@
+
+
+https://www.hackerearth.com/practice/basic-programming/implementation/basics-of-implementation/practice-problems/algorithm/multiple-occurence-97c00160/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+
+        
+
+
+        static void Main(string[] args)
+        {
+            int t = int.Parse(Console.ReadLine().Trim());
+
+
+            StringBuilder sb = new StringBuilder();
+
+
+
+            
+            while (t-- > 0)
+            {
+                int x = int.Parse(Console.ReadLine().Trim());
+
+                long[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => long.Parse(e));
+                Dictionary<long, int> iniciales = new Dictionary<long, int>();
+                Dictionary<long, int> finales = new Dictionary<long, int>();
+
+
+                for (int i = 0; i < arr.Length; i++)
+                {
+
+                    if (!iniciales.ContainsKey(arr[i]))
+                    {
+                        iniciales.Add(arr[i], i);
+                    }
+
+
+                    if (finales.ContainsKey(arr[i]))
+                    {
+                        finales[arr[i]] = i;
+                    }
+                    else
+                    {
+                        finales.Add(arr[i], i);
+                    }
+
+                }
+
+                long ans = 0;
+
+                foreach (int elem in iniciales.Keys)
+                {
+                    long suma = 0;
+                    long fin = -1, ini = -1;
+
+                    if(finales.ContainsKey(elem))
+                    {
+                        fin = finales[elem] + 1;
+                    }
+                    if(iniciales.ContainsKey(elem))
+                    {
+                        ini = iniciales[elem] + 1;
+                    }
+                    if(fin > -1)
+                    {
+                        suma = fin - ini;
+                    }
+
+                    ans += suma;
+                }
+
+                 Console.WriteLine(ans);
+                //sb.Append(ans);
+                //sb.AppendLine();
+
+            }
+
+           // Console.WriteLine(sb.ToString().Trim());
+
+
+            Console.ReadLine();
+
+        }
+    }
+}

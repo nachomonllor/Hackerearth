@@ -1,0 +1,62 @@
+
+
+https://www.hackerearth.com/practice/data-structures/hash-tables/basics-of-hash-tables/practice-problems/algorithm/difficult-characters/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp171
+{
+    class Program
+    {
+
+        static void DifficultCharacters(string s)
+        {
+
+            Dictionary<char, int> frec = new Dictionary<char, int>();
+            for(char ch = 'a'; ch <= 'z'; ch++)
+            {
+                frec.Add(ch, 0);
+            }
+
+            for(int i =0; i<s.Length; i++)
+            {
+                frec[s[i]]++;
+            }
+
+            Dictionary<char, int> ordenado = (from pair in frec
+                        orderby pair.Value ascending, pair.Key descending
+                        select pair).ToDictionary(k=>k.Key, v => v.Value);
+
+
+            foreach (KeyValuePair<char, int> kvp in ordenado)
+            {
+                Console.Write(kvp.Key + " ");
+            }
+            Console.WriteLine();
+
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            //DifficultCharacters("oomar");
+
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            while(t-- > 0)
+            {
+                string input = Console.ReadLine().Trim();
+                DifficultCharacters(input);
+
+            }
+
+
+            Console.ReadLine();
+        }
+    }
+}

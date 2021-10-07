@@ -1,0 +1,70 @@
+
+
+https://www.hackerearth.com/problem/algorithm/print-the-pattern-13-f7458bfd/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp221
+{
+    class Program
+    {
+
+
+        static string PrintThePattern(int n, string  ch)
+        {
+            //string ans = "";
+            StringBuilder ans = new StringBuilder();
+
+            int cont = 1;
+            int lim = 1;
+
+
+            for (int fila = 0; fila < n; fila++)
+            {
+                string concat = "";
+                if (fila % 2 != 0)
+                {
+                    for (int i = 0; i < lim; i++)
+                    {
+                        concat = concat.Insert(0, cont + "" + ch);
+                        cont++;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < lim; i++)
+                    {
+                        concat += cont + "" + ch;
+                        cont++;
+                    }
+                }
+
+                ans.AppendLine(concat.TrimEnd(ch.First()));
+                lim++;
+            }
+
+
+            return ans.ToString();
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            //   Console.WriteLine(PrintThePattern(25, '*'));
+            
+
+            int n = int.Parse(Console.ReadLine().Trim());
+            string ch = Console.ReadLine();
+
+            Console.WriteLine(PrintThePattern(n, ch));
+
+
+            Console.ReadLine();
+        }
+    }
+}

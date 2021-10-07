@@ -1,0 +1,57 @@
+
+https://www.hackerearth.com/problem/algorithm/print-pattern-8/
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp220
+{
+    class Program
+    {
+
+
+        static void PrintPattern(int n)
+        {
+
+            int ancho = 2 * n;
+
+            int mitadCol = n;
+            int izq = 0, der = 0;
+            for(int fila =0; fila < n; fila ++)
+            {
+            
+                for(int col =0; col < ancho; col ++)
+                {
+                    if(col < mitadCol - izq || col >= mitadCol + der)
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                der++;
+                izq++;
+                Console.WriteLine();
+            }
+
+
+        }
+
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine().Trim());
+
+            PrintPattern(n);
+
+
+            Console.ReadLine();
+
+        }
+    }
+}

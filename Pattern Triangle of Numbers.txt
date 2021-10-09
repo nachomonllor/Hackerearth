@@ -1,0 +1,64 @@
+
+
+
+https://www.hackerearth.com/problem/algorithm/pattern-triangle-of-numbers-4e87efc4-dad719ac/
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp229
+{
+    class Program
+    {
+
+        static void TriangleOfNumbers(int n)
+        {
+
+            int espacios = n - 1;
+            int ancho = 1;
+            int inicio = 1;
+            int mitad = 1;
+            for (int i = 0; i < n; i++)
+            {
+                for (int e = 0; e < espacios; e++)
+                {
+                    Console.Write(" ");
+                }
+                int num = inicio;
+                for (int a = 0; a < ancho; a++)
+                {
+                    Console.Write(num % 10);
+
+                    if (a < mitad - 1)
+                    {
+                        num++;
+                    }
+                    else
+                    {
+                        num--;
+                    }
+
+                }
+                mitad++;
+                ancho += 2;
+                espacios--;
+                inicio++;
+                Console.WriteLine();
+            }
+
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            TriangleOfNumbers(int.Parse(Console.ReadLine().Trim()));
+
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,82 @@
+
+
+https://www.hackerearth.com/problem/algorithm/patterns-5-85296c99/
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp225
+{
+    class Program
+    {
+
+        static void RajusPattern(int n)
+        {
+
+            //int izq = 0, der = 0;
+            int espacio = 0;
+            int mitad = (int)Math.Ceiling((double)(n / 2));
+
+            for (int i = 0; i < n / 2; i++)
+            {
+                for (int j = 0; j <= n; j++)
+                {
+                    if (j == mitad + 1)
+                    {
+                        Console.Write(" ");
+                    }
+                    if (j <= mitad - espacio || j > mitad + espacio)
+                    {
+                        Console.Write("* ");
+                    }
+                    else
+                    {
+                        Console.Write("  ");
+                    }
+                }
+                espacio++;
+                Console.WriteLine();
+            }
+
+
+            for (int i = 0; i <= n / 2; i++)
+            {
+                for (int j = 0; j <= n; j++)
+                {
+                    if (j == mitad + 1)
+                    {
+                        Console.Write(" ");
+                    }
+                    if (j <= mitad - espacio || j > mitad + espacio)
+                    {
+                        Console.Write("* ");
+                    }
+                    else
+                    {
+                        Console.Write("  ");
+                    }
+                }
+                espacio--;
+                Console.WriteLine();
+            }
+
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            // RajusPattern(11);
+            RajusPattern(int.Parse(Console.ReadLine().Trim()));
+
+
+
+            Console.ReadLine();
+
+        }
+    }
+}

@@ -1,0 +1,90 @@
+
+https://www.hackerearth.com/problem/algorithm/rhombus-pattern/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp228
+{
+    class Program
+    {
+
+
+        static void RhombusPattern(int n)
+        {
+
+            int mitad = n;
+            int espacios = 0;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int num = 0;
+                for (int j = 1; j <= 2 * n - 1; j++)
+                {
+                    if (j < mitad - espacios || j > mitad + espacios)
+                    {
+                        Console.Write("- ");
+                    }
+                    else
+                    {
+                        if (j > mitad)
+                        {
+                            num--;
+                        }
+                        else
+                        {
+                            num++;
+                        }
+                        Console.Write((num % 10)+ " ");
+                    }
+                }
+                Console.WriteLine();
+                espacios++;
+            }
+
+            for (int i = 0; i <= n - 1; i++)
+            {
+
+                int num = 0;
+                for (int j = 1; j <= 2 * n - 1; j++)
+                {
+
+                    if (j < mitad - espacios || j > mitad + espacios)
+                    {
+                        Console.Write("- ");
+
+                    }
+                    else
+                    {
+                        if (j > mitad)
+                        {
+                            num--;
+                        }
+                        else
+                        {
+                            num++;
+                        }
+                        Console.Write((num % 10) + " ");
+
+
+                    }
+                }
+                Console.WriteLine();
+                espacios--;
+            }
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            RhombusPattern(int.Parse(Console.ReadLine().Trim()));
+
+            Console.ReadLine();
+
+        }
+    }
+}

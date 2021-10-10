@@ -1,0 +1,200 @@
+
+
+https://www.hackerearth.com/problem/algorithm/microsoft-pattern-test-ec710f3a/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp230
+{
+    class Program
+    {
+
+
+        static string Q1(string numero)
+        {
+
+            int[] frec = new int[10];
+
+            for (int i = 0; i < numero.Length; i++)
+            {
+                frec[numero[i] - '0']++;
+            }
+
+
+            int impares = 0;
+            int contNums = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                if (frec[i] > 0)
+                {
+                    contNums++;
+                    if (frec[i] % 2 != 0)
+                    {
+                        impares++;
+                    }
+                }
+            }
+
+
+
+
+            if (impares > 1)
+            {
+                return "-1";
+            }
+
+            if (contNums == 1)
+            {
+                return numero;
+            }
+
+
+
+            List<string> ans = new List<string>();
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (frec[i] > 0)
+                {
+                    if (frec[i] % 2 == 0)
+                    {
+
+                        for (int cont = 0; cont < 2; cont++)
+                        {
+                            ans.Add("");
+                        }
+                    }
+                    else
+                    {
+                        if (frec[i] > 1)
+                        {
+                            for (int cont = 0; cont < 3; cont++)
+                            {
+                                ans.Add("");
+                            }
+                        }
+                        else if (frec[i] == 1)
+                        {
+                            ans.Add("");
+                        }
+                    }
+                }
+            }
+
+
+            int izq = 0;
+            int der = ans.Count - 1;
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (izq < der)
+                {
+                    if (frec[i] > 0)
+                    {
+                        if (frec[i] % 2 == 0)
+                        {
+                            ans[izq] = new string(i.ToString().First(), frec[i] / 2);
+                            ans[der] = new string(i.ToString().First(), frec[i] / 2);
+
+                            izq++;
+                            der--;
+                        }
+                        else
+                        {
+                            if (frec[i] > 1)
+                            {
+                                ans[izq] = new string(i.ToString().First(), frec[i] / 3);
+                                ans[der] = new string(i.ToString().First(), frec[i] / 3);
+                                ans[(int)Math.Ceiling((double)(ans.Count / 2))] = new string(i.ToString().First(), frec[i] / 3);
+                                izq++;
+                                der--;
+                            }
+                            else
+                            {
+                                ans[(int)Math.Ceiling((double)(ans.Count / 2))] = new string(i.ToString().First(), 1);
+                                //izq++;
+                                //der--;
+                            }
+                        }
+                    }
+                }
+                else if (izq == der)
+                {
+                    if (frec[i] > 0)
+                    {
+                        ans[(int)Math.Ceiling((double)(ans.Count / 2))] = new string(i.ToString().First(), frec[i]);
+                    }
+                }
+
+            }
+
+
+
+            if (ans.First().First() == '0' && ans.Last().Last() == '0')
+            {
+                string temp = ans[0];
+                ans[0] = ans[1];
+                ans[1] = temp;
+
+                int ult = ans.Count - 1;
+
+                temp = ans[ult];
+                ans[ult] = ans[ult - 1];
+                ans[ult - 1] = temp;
+
+            }
+
+            if (ans.First().First() == '0' || ans.Last().Last() == '0')
+            {
+                return "-1";
+            }
+
+            return string.Join("", ans.ToArray());
+
+        }
+
+
+        static void Main(string[] args)
+        {
+            //string s = "2244";
+            //string s = "322";
+            // string s = "123";
+
+            //string s = "11122";
+
+            //string s = "11223344559";
+
+            //string s = "9999111";
+
+            //string s = "9009";
+
+            ////string s = "1234567899876543210";
+            //Console.WriteLine(Q1(s));
+
+            //8
+            //1
+            //1234567899876543210
+            //12345678998765432100
+            //900
+            //9999111
+            //1111999
+            //999111
+            //99991111
+
+            int t = int.Parse(Console.ReadLine().Trim());
+            while (t-- > 0)
+            {
+                Console.WriteLine(Q1(Console.ReadLine().Trim()));
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+

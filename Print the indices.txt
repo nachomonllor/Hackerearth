@@ -1,0 +1,79 @@
+https://www.hackerearth.com/problem/algorithm/bulbul-and-her-calculations/
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp233
+{
+    class Program
+    {
+
+
+        static List<int> ObtenerIndices(int[] arr, int target)
+        {
+            Dictionary<int, List<int>> indices = new Dictionary<int, List<int>>();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (indices.ContainsKey(arr[i]))
+                {
+                    indices[arr[i]].Add(i);
+                }
+                else
+                {
+                    indices[arr[i]] = new List<int>();
+                    indices[arr[i]].Add(i);
+                }
+            }
+
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+
+                if (indices.ContainsKey(target - arr[i]))
+                {
+                    List<int> listaIndices = indices[target - arr[i]];
+
+                    foreach (int item in listaIndices)
+                    {
+
+                        List<int> ans = new List<int>();
+                        ans.Add(i);
+                        ans.Add(item);
+                        return ans;
+
+                    }
+                }
+            }
+
+            List<int> r = new List<int>();
+            r.Add(-1);
+            r.Add(-1);
+            return r;
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            while (t-- > 0)
+            {
+                int n = int.Parse(Console.ReadLine().Trim());
+                int[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => int.Parse(e));
+                int target = int.Parse(Console.ReadLine().Trim());
+
+                List<int> obt = ObtenerIndices(arr, target);
+                Console.WriteLine(obt.First() + " " + obt.Last());
+            }
+
+
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,55 @@
+https://www.hackerearth.com/practice/data-structures/hash-tables/basics-of-hash-tables/practice-problems/algorithm/maximum-occurrence-9/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp270
+{
+    class Program
+    {
+
+
+        static void MaximumOccurrence(string s)
+        {
+
+            int[] chars = new int[256];
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                chars[s[i]]++;
+            }
+
+            string ans = "";
+
+            int max_freq = 0;
+            for (int i = 0; i < 256; i++)
+            {
+                if (chars[i] > max_freq)
+                {
+                    max_freq = chars[i];
+                    ans = ((char)(i)) + " " + max_freq;
+                }
+                 
+            }
+            Console.WriteLine(ans);
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            //string s = "aaaaAAAA";
+            //string s = "Pulkit is a dog!!!!!!!!!!!!";
+            //MaximumOccurrence(s);
+
+            MaximumOccurrence(Console.ReadLine().Trim());
+
+
+            Console.ReadLine();
+
+        }
+    }
+}

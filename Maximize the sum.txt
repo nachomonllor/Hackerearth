@@ -1,0 +1,83 @@
+https://www.hackerearth.com/practice/data-structures/arrays/1-d/practice-problems/algorithm/maximize-sum-0423b95e/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp274
+{
+    class Program
+    {
+
+        static long MaximizeTheSum(long N, long K, long[] arr)
+        {
+
+            Dictionary<long, long> sd = new Dictionary<long, long>();
+
+            foreach (long item in arr)
+            {
+                if (sd.ContainsKey(item))
+                {
+                    sd[item]++;
+                }
+                else
+                {
+                    sd[item] = 1;
+                }
+            }
+            long[] keys = sd.Keys.ToArray();
+            long[] sumas = new long[sd.Count];
+            long indice = 0;
+            foreach (KeyValuePair<long, long> kvp in sd)
+            {
+                sumas[indice++] = kvp.Key * kvp.Value;
+            }
+
+            Array.Sort(sumas, keys);
+            Array.Reverse(sumas);
+            Array.Reverse(keys);
+
+            HashSet<long> distintos = new HashSet<long>();
+            long max_sum = 0;
+            long suma = 0;
+            for (long i = 0; i < sumas.Length; i++)
+            {
+                distintos.Add(keys[i]);
+                if (distintos.Count > K)
+                {
+                    break;
+                }
+                if (suma + sumas[i] > max_sum)
+                {
+                    suma += sumas[i];
+                    max_sum = suma;
+                }
+            }
+
+            return max_sum;
+
+        }
+
+        static void Main(string[] args)
+        {
+
+            long T = long.Parse(Console.ReadLine().Trim());
+
+            while (T-- > 0)
+            {
+                string[] NK = Console.ReadLine().Trim().Split(' ');
+
+                long N = long.Parse(NK.First());
+                long K = long.Parse(NK.Last());
+                long[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => long.Parse(e));
+                Console.WriteLine(MaximizeTheSum(N, K, arr));
+            }
+
+            //Console.WriteLine(MaximizeTheSum(10, 4, new long[] { 5, 5, 10, 8, -1, 16, -3, 14, -10, -10 }));
+
+            Console.ReadLine();
+        }
+
+    }
+}

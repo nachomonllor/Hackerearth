@@ -1,0 +1,65 @@
+
+https://www.hackerearth.com/practice/data-structures/arrays/1-d/practice-problems/algorithm/digitial-sequence-ee0ea080/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp275
+{
+    class Program
+    {
+
+        static int DigitalSequence(int[] arr)
+        {
+            int[] frec_total = new int[10];
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int[] frec_local = new int[10];
+                int copia = arr[i];
+                while (copia > 0)
+                {
+                    frec_local[copia % 10]++;
+                    copia /= 10;
+                }
+
+                for (int dig = 0; dig < 10; dig++)
+                {
+                    if (frec_local[dig] > 0)
+                    {
+                        frec_total[dig]++;
+                    }
+                }
+
+            }
+
+            int max = 0;
+            for(int i =0; i<10; i++)
+            {
+                max = Math.Max(max, frec_total[i]);
+            }
+
+            return max;
+        }
+
+        static void Main(string[] args)
+        {
+
+            //int[] arr = { 12, 11, 3, 4, 5 };
+            //Console.WriteLine(DigitalSequence(arr));
+
+
+            int n = int.Parse(Console.ReadLine().Trim());
+
+            int[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => int.Parse(e));
+
+            Console.WriteLine(DigitalSequence(arr));
+
+
+            Console.ReadLine();
+        }
+    }
+}

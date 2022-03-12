@@ -1,0 +1,46 @@
+https://www.hackerearth.com/practice/algorithms/string-algorithm/string-searching/practice-problems/algorithm/string-4-d1093b86/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp276
+{
+    class Program
+    {
+
+
+        static int EliminarCaracter(string s)
+        {
+
+            int[] frec = new int[26];
+            for (int i = 0; i < s.Length; i++)
+            {
+                frec[s[i] - 'a']++;
+            }
+
+            int max_frec = 0;
+            for (int i = 0; i < 26; i++)
+            {
+                max_frec = Math.Max(max_frec, frec[i]);
+            }
+            return s.Length - max_frec;
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            int n = int.Parse(Console.ReadLine().Trim());
+
+            string s = Console.ReadLine().Trim();
+
+            Console.WriteLine(EliminarCaracter(s));
+
+
+            Console.ReadLine();
+        }
+    }
+}

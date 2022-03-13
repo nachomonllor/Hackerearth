@@ -1,0 +1,58 @@
+https://www.hackerearth.com/practice/data-structures/hash-tables/basics-of-hash-tables/practice-problems/algorithm/little-jhool-and-the-magical-jewels/
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp280
+{
+    class Program
+    {
+
+        static int BuscarRuby(string s)
+        {
+
+            int r = 0, u = 0, b = 0, y = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+
+                if (s[i] == 'r')
+                {
+                    r++;
+                }
+                else if (s[i] == 'u')
+                {
+                    u++;
+                }
+                else if(s[i] == 'b')
+                {
+                    b++;
+                }
+                else if(s[i] == 'y')
+                {
+                    y++;
+                }
+            }
+
+            return new int[] { r, u, b, y }.Min();
+        }
+
+        static void Main(string[] args)
+        {
+
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            while(t-- > 0)
+            {
+                string s = Console.ReadLine().Trim();
+                Console.WriteLine(BuscarRuby(s));
+            }
+
+            Console.ReadLine();
+        }
+    }
+}

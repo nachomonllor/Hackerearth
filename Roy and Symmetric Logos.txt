@@ -1,0 +1,55 @@
+
+https://www.hackerearth.com/practice/data-structures/arrays/multi-dimensional/practice-problems/algorithm/roy-and-symmetric-logos-1/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp278
+{
+    class Program
+    {
+
+        static string RoyAndSymmetricLogos(string[] matrix, int N)
+        {
+            for (int X = 0; X < N; X++)
+            {
+                int i = 0, j = N - 1;
+
+                while (i < j)
+                {
+                    if (matrix[X][i] != matrix[X][j] || matrix[i][X] != matrix[j][X])
+                    {
+                        return "NO";
+                    }
+                    i++;
+                    j--;
+                }
+            }
+
+            return "YES";
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            int T = int.Parse(Console.ReadLine());
+
+            while (T-- > 0)
+            {
+                int N = int.Parse(Console.ReadLine());
+                string[] matrix = new string[N];
+                for (int i = 0; i < N; i++)
+                {
+                    matrix[i] = Console.ReadLine().Trim();
+                }
+                Console.WriteLine(RoyAndSymmetricLogos(matrix, N));
+            }
+
+            Console.ReadLine();
+        }
+    }
+}

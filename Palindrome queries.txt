@@ -1,0 +1,133 @@
+
+https://www.hackerearth.com/practice/algorithms/string-algorithm/string-searching/practice-problems/algorithm/palindrome-queries-eefd5c23/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp284
+{
+    class Program
+    {
+
+        public class Query
+        {
+            public int L, R;
+            //public int caracter;
+
+            public Query(int l, int r)
+            {
+                this.L = l;
+                this.R = r;
+            }
+        }
+
+
+        public static void PalindromeQueries(string arr, List<Query> queries)
+        {
+
+            int[,] frecDigits = new int[26, arr.Length];
+
+            frecDigits[arr[0] - 'a', 0] = 1;
+
+            for (int i = 1; i < arr.Length; i++)
+            {
+                for (char ch = 'a'; ch <= 'z'; ch++)
+                {
+                    frecDigits[ch - 'a', i] = frecDigits[ch - 'a', i - 1];
+                }
+                frecDigits[arr[i] - 'a', i]++;
+            }
+
+
+            //for (int i = 0; i < 26; i++)
+            //{
+            //    for (int j = 0; j < frecDigits.GetLength(1); j++)
+            //    {
+            //        Console.Write((char)(i + 'a') + " " + frecDigits[i, j] + " - ");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+
+            List<int> ans = new List<int>();
+
+            foreach (Query q in queries)
+            {
+                int L = q.L-1;
+                int R = q.R-1;
+                //int X = q.caracter;
+
+                int frecX;
+
+                int cont_impares = 0;
+                for (int X = 0; X < 26; X++)
+                {
+
+                    if (L - 1 < 0)
+                    {
+                        frecX = frecDigits[X, R];
+                    }
+                    else
+                    {
+                        frecX = frecDigits[X, R] - frecDigits[X, L - 1];
+                    }
+
+                    if (frecX % 2 != 0)
+                    {
+                        cont_impares++;
+                    }
+
+                    //Console.WriteLine((char)(X + 'a') + " " + frecX);
+                    //ans.Add(frecX);
+
+                }
+
+                if (cont_impares > 1)
+                {
+                    Console.WriteLine("Impossible");
+                }
+                else
+                {
+                    Console.WriteLine("Possible");
+                }
+
+            }
+
+
+            //return ans;
+
+        }
+
+
+
+
+        static void Main(string[] args)
+        {
+
+            //string s = "abccab";
+            //PalindromeQueries(s, new List<Query>());
+
+            int Q = int.Parse(Console.ReadLine().Trim());
+
+            string s = Console.ReadLine().Trim();
+
+            List<Query> queries = new List<Query>();
+
+            for (int i = 0; i < Q; i++)
+            {
+                string[] input = Console.ReadLine().Trim().Split(' ');
+                int L = int.Parse(input.First());
+                int R = int.Parse(input.Last());
+                queries.Add(new Query(L, R));
+            }
+
+            PalindromeQueries(s, queries);
+
+            Console.ReadLine();
+        }
+    }
+}
+

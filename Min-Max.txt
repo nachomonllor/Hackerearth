@@ -1,0 +1,42 @@
+
+https://www.hackerearth.com/practice/basic-programming/implementation/basics-of-implementation/practice-problems/algorithm/min-max-3/
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp282
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine().Trim());
+            int[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => int.Parse(e));
+
+            int min = arr.Min();
+            int max = arr.Max();
+
+            HashSet<int> hash = new HashSet<int>(arr);
+
+            string ans = "YES";
+            for (int i = min; i <= max; i++)
+            {
+                if (!hash.Contains(i))
+                {
+                    ans = "NO";
+                }
+            }
+
+
+            Console.WriteLine(ans);
+
+            Console.ReadLine();
+        }
+    }
+}
+

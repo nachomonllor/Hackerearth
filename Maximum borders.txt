@@ -1,0 +1,85 @@
+
+https://www.hackerearth.com/practice/basic-programming/input-output/basics-of-input-output/practice-problems/algorithm/maximum-border-9767e14c/
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp285
+{
+    class Program
+    {
+
+        static int MaximumBorders(string[] matrix)
+        {
+            int max_black = 0;
+
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                int consec_black_fila = 0;
+                for (int j = 0; j < matrix[i].Length; j++)
+                {
+                    if (matrix[i][j] == '#')
+                    {
+                        consec_black_fila++;
+                    }
+                    else
+                    {
+                        max_black = Math.Max(max_black, consec_black_fila);
+                        consec_black_fila = 0;
+                    }
+                }
+            }
+
+
+            for (int j = 0; j < matrix[0].Length; j++)
+            {
+                int consec_black_col = 0;
+            
+                for (int i = 0; i < matrix.Length; i++)
+                {
+                    if (matrix[i][j] == '#')
+                    {
+                        consec_black_col++;
+                    }
+                    else
+                    {
+                        max_black = Math.Max(max_black, consec_black_col);
+                        consec_black_col = 0;
+                    }
+                }
+            }
+
+            return max_black;
+
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            int t = int.Parse(Console.ReadLine());
+
+            while (t-- > 0)
+            {
+                string[] input = Console.ReadLine().Trim().Split(' ');
+                int n = int.Parse(input.First());
+                int m = int.Parse(input.Last());
+
+                string[] matrix = new string[n];
+                for (int i = 0; i < n; i++)
+                {
+                    matrix[i] = Console.ReadLine().Trim();
+                }
+
+                Console.WriteLine(MaximumBorders(matrix));
+            }
+
+
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,123 @@
+
+https://www.hackerearth.com/practice/algorithms/sorting/merge-sort/practice-problems/algorithm/sum-of-sum-of-digits-6/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp287
+{
+    class Program
+    {
+        public class Query
+        {
+            public int Type;
+            public int K;
+
+            public Query(int type, int k)
+            {
+                this.Type = type;
+                this.K = k;
+            }
+        }
+
+        static long SumDig(long n)
+        {
+            long suma = 0;
+            while (n > 0)
+            {
+                suma += n % 10;
+                n /= 10;
+            }
+            return suma;
+        }
+
+        static long SumOfDigits(long n)
+        {
+            long x = SumDig(n);
+
+            while ((x + "").Length > 1)
+            {
+                x = SumDig(x);
+            }
+
+            return x;
+        }
+
+        static void SumOfSumOfDigits(long[] arr, List<Query> queries)
+        {
+
+            List<long> listaSumDig = new List<long>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                listaSumDig.Add(SumOfDigits(arr[i]));
+            }
+
+            listaSumDig.Sort();
+
+            long[] sumMinimos = new long[listaSumDig.Count];
+            long[] sumMaximos = new long[listaSumDig.Count];
+            long sumaA = 0;
+            long sumaB = 0;
+            int rev = listaSumDig.Count - 1;
+            for (int i = 0; i < sumMinimos.Length; i++)
+            {
+                sumaA += listaSumDig[i];
+                sumMinimos[i] = sumaA;
+                sumaB += listaSumDig[rev];
+                sumMaximos[i] = sumaB;
+                rev--;
+            }
+
+            foreach (Query q in queries)
+            {
+                int type = q.Type;
+                int k = q.K;
+
+                if (type == 1)
+                {
+                    Console.WriteLine(sumMaximos[k -1]);
+                }
+                else
+                {
+                    Console.WriteLine(sumMinimos[k -1]);
+                }
+
+            }
+
+        }
+
+
+        static void Main(string[] args)
+        {
+
+
+            //int[] arr = { 13, 345, 193, 44444, 100303 };
+            //List<Query> queries = new List<Query>();
+            //queries.Add(new Query(1, 2));
+            //queries.Add(new Query(1, 4));
+            //queries.Add(new Query(2, 1));
+            //queries.Add(new Query(2, 4));
+            //queries.Add(new Query(1, 5));
+            //SumOfSumOfDigits(arr, queries);
+
+            string[] input = Console.ReadLine().Trim().Split(' ');
+            int N = int.Parse(input.First());
+            int Q = int.Parse(input.Last());
+            long[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => long.Parse(e));
+            List<Query> queries = new List<Query>();
+
+            for (int i = 0; i < Q; i++)
+            {
+                string[] que = Console.ReadLine().Trim().Split(' ');
+                queries.Add(new Query(int.Parse(que.First()), int.Parse(que.Last())));
+            }
+            SumOfSumOfDigits(arr, queries);
+
+            Console.ReadLine();
+
+        }
+    }
+}

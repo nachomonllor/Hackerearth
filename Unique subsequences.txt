@@ -1,0 +1,42 @@
+
+https://www.hackerearth.com/practice/algorithms/string-algorithm/basics-of-string-manipulation/practice-problems/algorithm/unique-subsequence-264057c9/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp290
+{
+    class Program
+    {
+
+
+        static int UniqueSubsequences(string s)
+        {
+            int ans = s.Length;
+            for (int i = 1; i < s.Length; i++) if (s[i - 1] == s[i]) ans--;
+            return ans;
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            //string s = "aaaac";
+            //Console.WriteLine(UniqueSubsequences(s));
+
+            int t = int.Parse(Console.ReadLine().Trim());
+
+            while (t-- > 0)
+            {
+                int n = int.Parse(Console.ReadLine().Trim());
+                string s = Console.ReadLine().Trim();
+                Console.WriteLine(UniqueSubsequences(s));
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
